@@ -1,4 +1,4 @@
-Poker Assistant (Texas Hold’em)
+Poker Partner (Texas Hold’em)
 An interactive tool and command-line helper that gives preflop and postflop advice using position, hand strength, draw detection, and pot odds.
 
 Prerequisites
