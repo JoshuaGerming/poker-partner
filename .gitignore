@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+.env
+
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Streamlit cache
+.streamlit/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
