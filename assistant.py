@@ -71,11 +71,11 @@ def main():
     else:
         pot     = args.pot
         to_call = args.to_call
-        action  = postflop_decision(hole, board, pot, to_call)
+        action = postflop_decision(hole, board, pot, to_call, pos).upper()
         opp     = simulate_opponent()
 
         print(f"[ Postflop ] Board: {board}  Pot: {pot}  To call: {to_call}")
-        print(f"Suggested action → {action.upper()}")
+        print(f"Suggested action → {action}")
         print(f"Opponent profile → {opp}")
 
 if __name__ == "__main__":
