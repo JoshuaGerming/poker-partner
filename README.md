@@ -1,41 +1,88 @@
-Poker Partner (Texas Hold’em)
-An interactive tool and command-line helper that gives preflop and postflop advice using position, hand strength, draw detection, and pot odds.
+# Poker Assistant (Texas Hold'em)
 
-Prerequisites
-• Python 3.8+ installed
-• Git
+An interactive command-line and web-based assistant that gives preflop and postflop advice for Texas Hold'em poker.
 
-Installation
+## Getting Started
 
-Clone the repo:
-git clone https://github.com/JoshuaGerming/poker-partner.git
-cd poker-partner/poker-assistant
+Follow these steps **after cloning** the repo to set up and run the project:
 
-Create & activate a venv:
-– Windows (PowerShell):
-py -3 -m venv venv
-.\venv\Scripts\Activate.ps1
-– macOS/Linux:
-python3 -m venv venv
-source venv/bin/activate
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/JoshuaGerming/poker-partner.git
+   cd poker-partner/poker-assistant
+   ```
 
-Install dependencies:
-pip install --upgrade pip
-pip install -r requirements.txt
+2. **Create & activate a Python virtual environment**
+   - **Windows (PowerShell)**
+     ```powershell
+     py -3 -m venv venv
+     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+     .\venv\Scripts\Activate.ps1
+     ```
+   - **Windows (cmd.exe)**
+     ```bat
+     py -3 -m venv venv
+     venv\Scripts\activate.bat
+     ```
+   - **macOS / Linux**
+     ```bash
+     python3 -m venv venv
+     source venv/bin/activate
+     ```
+   After activation your prompt should start with `(venv)`.
 
-Usage
+3. **Install dependencies**
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
 
-Command-line
-• Preflop advice:
-python assistant.py --hole Ah Kd --pos CO
-• Postflop advice:
-python assistant.py --hole Ah Kd --board 2c 7d Th --pos CO --pot 100 --to-call 20
+## Running the Assistant
 
-Streamlit UI
-• Run: streamlit run app.py
-• Enter your hole cards (and board if you like), click Simulate Flop to deal a random flop, then Get Recommendation.
-• The session history of hands & opponent profiles appears below.
+### Command-Line Interface (CLI)
 
-Development
-• Preflop chart is in charts/preflop_chart.csv (169 hands)
-• Tests live in tests/; run with python -m pytest -q
+- **Preflop**:
+  ```bash
+  python assistant.py --hole Ah Kd --pos CO
+  ```
+- **Postflop**:
+  ```bash
+  python assistant.py \
+    --hole Ah Kd \
+    --board 2c 7d Th 9h 3s \
+    --pos BTN \
+    --pot 150 \
+    --to-call 30
+  ```
+
+### Web UI (Streamlit)
+
+Launch the browser-based UI:
+```bash
+python -m streamlit run app.py
+```
+- Use **Simulate Flop** to deal a random flop based on your hole cards.  
+- Click **Get Recommendation** for preflop or postflop advice.  
+- View your **Session History** at the bottom.
+
+## Project Layout
+
+```
+poker-assistant/             # root of the assistant module
+├── app.py                  # Streamlit web UI
+├── assistant.py            # CLI entrypoint
+├── charts/
+│   └── preflop_chart.csv   # 169×6 preflop action chart
+├── hand_evaluator.py       # wraps Treys for hand scores
+├── opponent_simulator.py   # stubs random tightness/aggression
+├── postflop.py             # postflop decision logic (heuristic)
+├── preflop.py              # loads CSV and provides PreflopChart
+├── tests/                  # pytest unit tests
+│   ├── test_hand_evaluator.py
+│   ├── test_preflop.py
+│   ├── test_postflop.py
+│   └── test_draws_and_odds.py
+├── evaluate_performance.py # Monte Carlo backtester
+├── requirements.txt        # Python dependencies
+└── README.md               # this file
+```
